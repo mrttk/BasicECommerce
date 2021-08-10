@@ -70,3 +70,7 @@ C:\Users\Black\source\repos\BasicECommerce\BasicECommerce\BasicECommerce\obj\Deb
 C:\Users\Black\source\repos\BasicECommerce\BasicECommerce\BasicECommerce\obj\Debug\BasicECommerce.csproj.CopyComplete
 C:\Users\Black\source\repos\BasicECommerce\BasicECommerce\BasicECommerce\obj\Debug\BasicECommerce.dll
 C:\Users\Black\source\repos\BasicECommerce\BasicECommerce\BasicECommerce\obj\Debug\BasicECommerce.pdb
+C:\Users\Black\source\repos\BasicECommerce\BasicECommerce\BasicECommerce\bin\EntityFramework.dll
+C:\Users\Black\source\repos\BasicECommerce\BasicECommerce\BasicECommerce\bin\EntityFramework.SqlServer.dll
+C:\Users\Black\source\repos\BasicECommerce\BasicECommerce\BasicECommerce\bin\EntityFramework.xml
+C:\Users\Black\source\repos\BasicECommerce\BasicECommerce\BasicECommerce\bin\EntityFramework.SqlServer.xml
