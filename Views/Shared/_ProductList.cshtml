@@ -1,0 +1,18 @@
+﻿@using BasicECommerce.Entity;
+@model IEnumerable<ProductModel>
+
+@foreach (var product in Model)
+{
+    <div class="col">
+        <div class="card h-100">
+            <img src="~/theme/img/@product.Image" class="card-img-top img-fluid" alt="...">
+            <div class="card-body">
+                <a href="/Home/Details/@product.Id"><h5 class="card-title">@product.Name</h5></a>
+                <p class="card-text">@product.Description</p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">$@product.Price</small>
+            </div>
+        </div>
+    </div>
+}

@@ -1,5 +1,5 @@
 ﻿@using BasicECommerce.Entity;
-@model IEnumerable<Product>
+@model IEnumerable<ProductModel>
 @{
     ViewBag.Title = "List";
 }
@@ -19,21 +19,7 @@
     <div class="col-md-9">
         <div class="container mb-5">
             <div class="row row-cols-1 row-cols-md-3 g-4 mt-3 pt-2">
-                @foreach (var product in Model)
-                {
-                    <div class="col">
-                        <div class="card h-100">
-                            <img src="holder.js/301x170" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <a href="/Home/Details/@product.Id"><h5 class="card-title">@product.Name</h5></a>
-                                <p class="card-text">@product.Description</p>
-                            </div>
-                            <div class="card-footer">
-                                <small class="text-muted">@product.Price</small>
-                            </div>
-                        </div>
-                    </div>
-                }
+                @Html.Partial("_ProductList", Model)
             </div>
         </div>
     </div>

@@ -13,23 +13,43 @@ namespace BasicECommerce.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            var result = _context.Products
+            var produts = _context.Products
                 .Where(i => i.IsHomePage && i.IsApproved)
+                .Select(i => new ProductModel()
+                {
+                    Id = i.Id,
+                    Name = i.Name,
+                    Description = i.Description.Length > 50 ? i.Description.Substring(0, 47) + " ..." : i.Description,
+                    Price = i.Price,
+                    Stock = i.Stock,
+                    Image = i.Image,
+                    CategoryId = i.CategoryId
+                })
                 .ToList();
-            return View(result);
+            return View(produts);
         }
 
         public ActionResult Details(int id)
         {
-            var result = _context.Products.Where(i => i.Id == id).FirstOrDefault();
-            return View(result);
+            var produts = _context.Products.Where(i => i.Id == id).FirstOrDefault();
+            return View(produts);
         }
         public ActionResult List()
         {
-            var result = _context.Products
+            var products = _context.Products
                .Where(i => i.IsApproved)
+               .Select(i => new ProductModel()
+               {
+                   Id = i.Id,
+                   Name = i.Name,
+                   Description = i.Description.Length > 50 ? i.Description.Substring(0, 47) + " ..." : i.Description,
+                   Price = i.Price,
+                   Stock = i.Stock,
+                   Image = i.Image,
+                   CategoryId = i.CategoryId
+               })
                .ToList();
-            return View(result);
+            return View(products);
         }
     }
 }
