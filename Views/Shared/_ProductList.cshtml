@@ -8,11 +8,12 @@
             <img src="~/theme/img/@product.Image" class="card-img-top img-fluid" alt="...">
             <div class="card-body">
                 <a href="/Home/Details/@product.Id"><h5 class="card-title">@product.Name</h5></a>
-                <p class="card-text">@product.Description</p>
+                <p class="card-text description">@product.Description</p>
             </div>
             <div class="card-footer">
-                <small class="text-muted">$@product.Price</small>
+                <small class="text-muted product-price">$@product.Price</small> 
             </div>
+            
         </div>
     </div>
 }

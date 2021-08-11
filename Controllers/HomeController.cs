@@ -34,7 +34,7 @@ namespace BasicECommerce.Controllers
             var produts = _context.Products.Where(i => i.Id == id).FirstOrDefault();
             return View(produts);
         }
-        public ActionResult List()
+        public ActionResult List(int? id)
         {
             var products = _context.Products
                .Where(i => i.IsApproved)
@@ -48,8 +48,18 @@ namespace BasicECommerce.Controllers
                    Image = i.Image,
                    CategoryId = i.CategoryId
                })
-               .ToList();
-            return View(products);
+               .AsQueryable();
+
+            if (id != null)
+            {
+                products = products.Where(i => i.CategoryId == id);
+            }
+            return View(products.ToList());
+        }
+
+        public PartialViewResult GetCategories()
+        {
+            return PartialView(_context.Categories.ToList());
         }
     }
 }

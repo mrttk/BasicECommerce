@@ -12,11 +12,10 @@ namespace BasicECommerce.Entity
         {
             List<Category> categories = new List<Category>()
             {
-                new Category(){Name="Kamera",Description="Kamera Ürünleri"},
-                new Category(){Name="Bilgisayar",Description="Bilgisayar Ürünleri"},
-                new Category(){Name="Elektronik",Description="Elektronik Ürünler"},
-                new Category(){Name="Telefon",Description="Telefonlar"},
-                new Category(){Name="Beyaz Eşya",Description="Beyaz Eşya Ürünleri"},
+                new Category(){Name="Camera",Description="Camera Products"},
+                new Category(){Name="Laptop",Description="Laptop Products"},
+                new Category(){Name="Electronic",Description="Electronic Products"},
+                new Category(){Name="Mobile Phone",Description="Mobile Phones"}
             };
 
             foreach (var category in categories)

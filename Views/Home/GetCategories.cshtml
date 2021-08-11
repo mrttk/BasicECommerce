@@ -1,0 +1,28 @@
+﻿@using BasicECommerce.Entity;
+@model IEnumerable<Category>
+@{
+    var selectedCategory = Url.RequestContext.RouteData.Values["id"];
+}
+
+<div class="list-group">
+    <a href="/Home/List" class="list-group-item list-group-item-action">All Categories</a>
+    @foreach (var category in Model)
+    {
+        if (selectedCategory != null)
+        {
+            if (category.Id == int.Parse(selectedCategory.ToString()))
+            {
+                <a href="/Home/List/@category.Id" class="list-group-item list-group-item-action active">@category.Name</a>
+            }
+            else
+            {
+                <a href="/Home/List/@category.Id" class="list-group-item list-group-item-action">@category.Name</a>
+
+            }
+        }
+        else
+        {
+            <a href="/Home/List/@category.Id" class="list-group-item list-group-item-action">@category.Name</a>
+        }
+    }
+</div>
