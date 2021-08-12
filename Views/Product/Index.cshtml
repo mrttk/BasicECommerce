@@ -1,0 +1,85 @@
+﻿@model IEnumerable<BasicECommerce.Entity.Product>
+
+@{
+    ViewBag.Title = "Product List";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="container py-3">
+    <h2>Product List</h2>
+    <hr />
+    <p>
+        @Html.ActionLink("Create a New Product", "Create", null, new { @class = "btn btn-primary btn-sm" })
+    </p>
+    <table class="table table-hover">
+        <tr>
+            <th class="col-md-1">
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stock)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsHomePage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsApproved)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="col-md-1">
+                    <img src="~/theme/img/@item.Image" alt="@item.Name" class="img-fluid" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Stock)
+                </td>
+                <td>
+                    @if (item.IsHomePage)
+                    {
+                        <label class="badge bg-success">YEAP !</label>
+                    }
+                    else
+                    {
+                        <label class="badge bg-danger">NOPE !</label>
+                    }
+                </td>
+                <td>
+                    @if (item.IsApproved)
+                    {
+                        <label class="badge bg-success">YEAP !</label>
+                    }
+                    else
+                    {
+                        <label class="badge bg-danger">NOPE !</label>
+                    }
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-warning btn-sm" })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
