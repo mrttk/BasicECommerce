@@ -10,6 +10,7 @@ using BasicECommerce.Entity;
 
 namespace BasicECommerce.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CategoryController : Controller
     {
         private DataContext db = new DataContext();

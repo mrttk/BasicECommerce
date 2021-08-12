@@ -6,7 +6,7 @@ using System.Web;
 
 namespace BasicECommerce.Entity
 {
-    public class DataInitializer : DropCreateDatabaseIfModelChanges<DataContext>
+    public class DataInitializer : CreateDatabaseIfNotExists<DataContext>
     {
         protected override void Seed(DataContext context)
         {
