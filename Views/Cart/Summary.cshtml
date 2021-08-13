@@ -1,0 +1,15 @@
+﻿@model  BasicECommerce.Models.Cart
+<ul  id="cart" class="navbar-nav mb-2 mb-lg-0">
+    <li class="nav-item">
+        <a id="cart-text" href="/Cart">
+            <i class="bi bi-cart3 me-1"></i>
+            @if (Model.CartLines.Count() > 0)
+            {
+                <strong>
+                    (@(Model.CartLines.Count()))
+                    <span class="mx-1">|</span>
+                </strong>
+            }
+        </a>
+    </li>
+</ul>

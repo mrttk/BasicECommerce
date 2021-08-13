@@ -1,0 +1,58 @@
+﻿@using System.Globalization;
+@model BasicECommerce.Models.Cart
+@{
+    ViewBag.Title = "Index";
+}
+<div class="container py-3">
+    <h2>Cart</h2>
+    <hr />
+    @if (Model.CartLines.Count > 0)
+    {
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Quantity</th>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Sub Total</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.CartLines)
+                {
+                    <tr>
+                        <td class="col-md-1">
+                            <img src="~/theme/img/@item.Product.Image" alt="@item.Product.Name" class="img-fluid" />
+                        </td>
+                        <td>@item.Quantity</td>
+                        <td>@item.Product.Name</td>
+                        <td>$@item.Product.Price</td>
+                        <td>$@((item.Product.Price*item.Quantity))</td>
+                        <td>
+                            @using (Html.BeginForm("RemoveFromCart", "Cart"))
+                            {
+                                @Html.Hidden("Id", item.Product.Id)
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4">TOTAL : </td>
+                    <td>$@Model.Total()</td>
+                </tr>
+            </tfoot>
+        </table>
+    }
+    else
+    {
+        <div class="alert alert-warning">The cart is empty!</div>
+    }
+
+</div>
