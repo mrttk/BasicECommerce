@@ -13,7 +13,10 @@
     color: white;
 }
 
-
+.validation-summary-errors {
+    text-decoration: none;
+    color: darkred;
+}
 /* Sticky footer styles
 -------------------------------------------------- */
 html {

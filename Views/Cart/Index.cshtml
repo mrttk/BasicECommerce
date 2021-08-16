@@ -30,13 +30,13 @@
                         <td>@item.Product.Name</td>
                         <td>$@item.Product.Price</td>
                         <td>$@((item.Product.Price*item.Quantity))</td>
-                        <td>
+                        <td class="col-md-2">
                             @using (Html.BeginForm("RemoveFromCart", "Cart"))
                             {
                                 @Html.Hidden("Id", item.Product.Id)
-                            <button type="submit" class="btn btn-danger btn-sm">
-                                <i class="bi bi-trash"></i>
-                            </button>
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="bi bi-trash"></i>Delete
+                                </button>
                             }
                         </td>
                     </tr>
@@ -49,10 +49,17 @@
                 </tr>
             </tfoot>
         </table>
+        <div>
+            <a href="/Home/List" class="btn btn-secondary"><i class="bi bi-caret-left"></i>Product List</a>
+            <a href="/Cart/Checkout" class="btn btn-success"><i class="bi bi-cart-check"></i>Checkout</a>
+        </div>
     }
     else
     {
         <div class="alert alert-warning">The cart is empty!</div>
+        <div>
+            <a href="/Home/List" class="btn btn-secondary"><i class="bi bi-caret-left"></i>Product List</a>
+        </div>
     }
 
 </div>

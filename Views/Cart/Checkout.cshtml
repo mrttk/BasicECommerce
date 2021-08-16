@@ -1,0 +1,49 @@
+﻿@model BasicECommerce.Models.ShippingDetails
+@{
+    ViewBag.Title = "Checkout";
+}
+
+<div class="container py-3">
+    <h2>Checkout</h2>
+    <hr />
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary()
+        <div class="mb-3 col-md-6">
+            <label class="form-label">Full Name</label>
+            @Html.TextBoxFor(x => x.FullName, new { @class = "form-control" })
+        </div>
+        <div class="mb-3 col-md-6">
+            <label class="form-label">Adress Title</label>
+            @Html.TextBoxFor(x => x.AddressTitle, new { @class = "form-control" })
+        </div>
+        <div class="mb-3 col-md-6">
+            <label class="form-label">Address</label>
+            @Html.TextBoxFor(x => x.Address, new { @class = "form-control" })
+        </div>
+        <div class="mb-3 col-md-6">
+            <label class="form-label">City</label>
+            @Html.TextBoxFor(x => x.City, new { @class = "form-control" })
+        </div>
+        <div class="mb-3 col-md-6">
+            <label class="form-label">District</label>
+            @Html.TextBoxFor(x => x.District, new { @class = "form-control" })
+        </div>
+        <div class="mb-3 col-md-6">
+            <label class="form-label">Neighborhood</label>
+            @Html.TextBoxFor(x => x.Neighborhood, new { @class = "form-control" })
+        </div>
+        <div class="mb-3 col-md-6">
+            <label class="form-label">Post Code</label>
+            @Html.TextBoxFor(x => x.PostCode, new { @class = "form-control" })
+        </div>
+
+        <div class="mb-3">
+            <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+    }
+</div>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
