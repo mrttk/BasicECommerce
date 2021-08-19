@@ -1,0 +1,48 @@
+﻿@model IEnumerable<BasicECommerce.Models.UserOrderModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container py-3">
+    <h2>Your Orders</h2>
+    <hr />
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td>Order Number</td>
+                <td>Order Date</td>
+                <td>Total</td>
+                <td>Order State</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.OrderNumber</td>
+                    <td>@item.OrderDate.ToShortDateString()</td>
+                    <td>
+                        <i class="bi bi-currency-dollar"></i>
+                        @item.Total
+                    </td>
+                    <td>
+                        @if (item.OrderState.ToString() == "Waiting")
+                        {
+                            <span class="badge bg-danger">Waiting</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-success">Completed</span>
+
+                        }
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { Id = item.Id }, new { @clas = "btn btn-primary" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

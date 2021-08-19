@@ -88,6 +88,7 @@ namespace BasicECommerce.Controllers
         private void SaveOrder(Cart cart, ShippingDetails shippingDetails)
         {
             var order = new Order();
+            order.UserName = User.Identity.Name;
             order.OrderNumber = "ORD" + (new Random()).Next(111111, 999999).ToString();
             order.Total = cart.Total();
             order.OrderDate = DateTime.Now;
@@ -97,6 +98,7 @@ namespace BasicECommerce.Controllers
             order.District = shippingDetails.District;
             order.Neighborhood = shippingDetails.Neighborhood;
             order.PostCode = shippingDetails.PostCode;
+            order.OrderState = EnumOrderState.Waiting;
             order.OrderLines = new List<OrderLine>();
             foreach (var product in cart.CartLines)
             {

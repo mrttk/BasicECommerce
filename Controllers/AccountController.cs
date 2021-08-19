@@ -1,4 +1,5 @@
-﻿using BasicECommerce.Identity;
+﻿using BasicECommerce.Entity;
+using BasicECommerce.Identity;
 using BasicECommerce.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -13,6 +14,7 @@ namespace BasicECommerce.Controllers
 {
     public class AccountController : Controller
     {
+        private DataContext _db = new DataContext();
         private UserManager<ApplicationUser> userManager;
         private RoleManager<ApplicationRole> roleManager;
         public AccountController()
@@ -22,6 +24,53 @@ namespace BasicECommerce.Controllers
 
             var roleStore = new RoleStore<ApplicationRole>(new IdentityDataContext());
             roleManager = new RoleManager<ApplicationRole>(roleStore);
+        }
+        [Authorize]
+        public ActionResult Index()
+        {
+            var userName = User.Identity.Name;
+            var orders = _db.Orders.Where(i => i.UserName == userName)
+                                   .Select(i => new UserOrderModel()
+                                   {
+                                       Id = i.Id,
+                                       OrderNumber = i.OrderNumber,
+                                       OrderDate = i.OrderDate,
+                                       OrderState = i.OrderState,
+                                       Total = i.Total
+                                   })
+                                   .OrderByDescending(i => i.OrderDate)
+                                   .ToList();
+            return View(orders);
+        }
+        [Authorize]
+        public ActionResult Details(int id)
+        {
+            var entity = _db.Orders.Where(i => i.Id == id)
+                                   .Select(i => new OrderDetailsModel()
+                                   {
+                                       OrderId = i.Id,
+                                       OrderNumber = i.OrderNumber,
+                                       Total = i.Total,
+                                       OrderDate = i.OrderDate,
+                                       OrderState = i.OrderState,
+                                       AddressTitle = i.AddressTitle,
+                                       Address = i.Address,
+                                       City = i.City,
+                                       District = i.District,
+                                       PostCode = i.PostCode,
+                                       OrderLines = i.OrderLines
+                                                                .Select(x => new OrderLineModel()
+                                                                {
+                                                                    ProductId = x.ProductId,
+                                                                    ProductName = x.Product.Name,
+                                                                    Image = x.Product.Image,
+                                                                    Quantity = x.Quantity,
+                                                                    Price = x.Price
+                                                                }).ToList()
+                                   })
+                                   .FirstOrDefault();
+
+            return View(entity);
         }
 
         public ActionResult Register()

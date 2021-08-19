@@ -1,0 +1,50 @@
+﻿@model IEnumerable<BasicECommerce.Models.AdminOrderModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="container py-3">
+    <h2>All Orders</h2>
+    <hr />
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Order Number</th>
+                <th>Order Date</th>
+                <th>Order Status</th>
+                <th>Total</th>
+                <th>Product Count</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.OrderNumber</td>
+                    <td>@item.OrderDate.ToShortDateString()</td>
+                    <td>
+                        @if (item.OrderState.ToString() == "Waiting")
+                        {
+                            <span class="badge bg-danger">Waiting</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-success">Completed</span>
+                        }
+                    </td>
+                    <td>
+                        <i class="bi bi-currency-dollar"></i>
+                        @item.Total
+                    </td>
+                    <td>@item.Count</td>
+                    <td class="col-md-1">
+                        @Html.ActionLink("Details", "Details", new { @id = item.Id }, new { @class = "btn btn-primary btn-sm" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

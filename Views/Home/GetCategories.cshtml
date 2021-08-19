@@ -5,24 +5,36 @@
 }
 
 <div class="list-group">
-    <a href="/Home/List" class="list-group-item list-group-item-action">All Categories</a>
+    <a href="/Home/List" class="list-group-item list-group-item-action">
+        <i class="bi bi-chevron-double-right"></i>
+        All Categories
+    </a>
     @foreach (var category in Model)
     {
         if (selectedCategory != null)
         {
             if (category.Id == int.Parse(selectedCategory.ToString()))
             {
-                <a href="/Home/List/@category.Id" class="list-group-item list-group-item-action active">@category.Name</a>
+                <a href="/Home/List/@category.Id" class="list-group-item list-group-item-action active">
+                    <i class="bi bi-chevron-double-right"></i>
+                    @category.Name
+                </a>
             }
             else
             {
-                <a href="/Home/List/@category.Id" class="list-group-item list-group-item-action">@category.Name</a>
+                <a href="/Home/List/@category.Id" class="list-group-item list-group-item-action">
+                    <i class="bi bi-chevron-double-right"></i>
+                    @category.Name
+                </a>
 
             }
         }
         else
         {
-            <a href="/Home/List/@category.Id" class="list-group-item list-group-item-action">@category.Name</a>
+            <a href="/Home/List/@category.Id" class="list-group-item list-group-item-action">
+                <i class="bi bi-chevron-double-right"></i>
+                @category.Name
+            </a>
         }
     }
 </div>
