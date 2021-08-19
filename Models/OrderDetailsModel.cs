@@ -8,6 +8,7 @@ namespace BasicECommerce.Models
 {
     public class OrderDetailsModel
     {
+        public string UserName { get; set; }
         public int OrderId { get; set; }
         public string OrderNumber { get; set; }
         public double Total { get; set; }
